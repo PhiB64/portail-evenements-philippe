@@ -1,0 +1,17 @@
+body {
+  padding: 20px;
+}
+
+.darkMode {
+  width: 40px;
+  height: 40px;
+}
+.eventsTitle {
+  display: flex;
+  justify-content: space-between;
+}
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+}
