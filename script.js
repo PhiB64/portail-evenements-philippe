@@ -19,12 +19,15 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
       planningButton.textContent = "Ajouter au planning";
 
       const eventTitle = document.createElement("h3");
-      eventTitle.id = "eventtitle";
-      eventTitle.textContent = event.title;
+      eventTitle.id = "eventTitle";
+      eventTitle.innerHTML = event.title;
+
+      const [year, month, day] = event.start_date.split(" ")[0].split("-");
+      const newFormatDate = `${day}-${month}-${year}`;
 
       const eventDate = document.createElement("p");
       eventDate.id = "eventDate";
-      eventDate.textContent = event.start_date.split(" ")[0];
+      eventDate.textContent = newFormatDate;
 
       scrollEventsContainer.appendChild(eventCard);
       eventCard.appendChild(eventTitle);
