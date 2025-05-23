@@ -11,7 +11,7 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
       eventCard.id = "eventCard";
 
       const detailsButton = document.createElement("button");
-      detailsButton.id = "detailsButton";
+      detailsButton.className = "detailsButton";
       detailsButton.textContent = "Voir détails";
 
       const planningButton = document.createElement("button");
@@ -23,17 +23,34 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
       eventTitle.innerHTML = event.title;
 
       const [year, month, day] = event.start_date.split(" ")[0].split("-");
-      const newFormatDate = `${day}-${month}-${year}`;
+      const newFormatDate = `Date: ${day}-${month}-${year}`;
 
       const eventDate = document.createElement("p");
       eventDate.id = "eventDate";
       eventDate.textContent = newFormatDate;
 
+      const eventAdress = document.createElement("p");
+      eventAdress.id = "eventAdress";
+      eventAdress.textContent = `Lieu: ${event.venue.slug}`;
+
       scrollEventsContainer.appendChild(eventCard);
       eventCard.appendChild(eventTitle);
       eventCard.appendChild(eventDate);
+      eventCard.appendChild(eventAdress);
       eventCard.appendChild(detailsButton);
       eventCard.appendChild(planningButton);
+
+      detailsButton.addEventListener("click", () => {
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDate = document.getElementById("modalDate");
+        const modalAdress = document.getElementById("modalAdress");
+        const modalDescription = document.getElementById("modalDescription");
+        modalTitle.textContent = event.title;
+        modalDate.textContent = newFormatDate;
+        modalAdress.textContent = `Lieu: ${event.venue.slug}`;
+        modalDescription.innerHTML = event.description;
+      });
     });
   })
+
   .catch((error) => console.error("Erreur API :", error));
