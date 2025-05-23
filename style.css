@@ -7,18 +7,43 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+}
+.dark-mode {
+  background-color: black;
+  color: white;
 }
 
-.darkMode {
+.dark-mode #eventsContainer {
+  background-color: #222;
+}
+
+.dark-mode #planningContainer {
+  background-color: #333;
+}
+
+.dark-mode h2,
+.dark-mode p {
+  color: white;
+}
+
+.dark-mode #eventCard,
+.dark-mode .eventCardClone,
+.dark-mode #modal {
+  background-color: #444;
+}
+
+.darkModeImage {
   width: 40px;
   height: 40px;
   background-image: url(https://res.cloudinary.com/dwkyezu2u/image/upload/v1747942220/pngegg_wdujmn.png);
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 }
 .eventsTitle {
-  padding-top: 50px;
+  padding-top: 40px;
+  padding-bottom: 10px;
   padding-left: 50px;
   padding-right: 50px;
   display: flex;
@@ -26,18 +51,21 @@ body {
 }
 #eventsContainer {
   background-color: #4ecdc4;
-  height: 50vh;
-  width: 100vw;
+  min-height: 50%;
+  height: auto;
+  width: 100%;
 }
 .planningTitle {
-  padding-top: 50px;
+  padding-top: 40px;
+  padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
 }
 #planningContainer {
   background-color: #f5a623;
-  height: 50vh;
-  width: 100vw;
+  min-height: 50%;
+  height: auto;
+  width: 100%;
 }
 h2 {
   font-weight: bold;
@@ -52,9 +80,10 @@ p {
 #eventDate {
   font-size: 18px;
 }
-#scrollEventsContainer {
+#scrollEventsContainer,
+#scrollPlanningContainer {
   display: flex;
-  margin-top: 20px;
+
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 50px;
@@ -62,7 +91,9 @@ p {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 }
-#eventCard {
+
+#eventCard,
+.eventCardClone {
   display: flex;
   gap: 10px;
   padding: 10px;
@@ -77,7 +108,9 @@ p {
   scroll-snap-align: start;
   background-color: #f7fff7;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 #eventTitle {
   flex-wrap: wrap;
   font-size: 22px;
@@ -95,8 +128,56 @@ button {
 .detailsButton {
   background-color: #4ecdc4;
   color: white;
+  cursor: pointer;
 }
-#planningButton {
+.planningButton,
+.removeButton {
   background-color: #f5a623;
   color: white;
+  cursor: pointer;
+}
+#modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  min-height: 300px;
+  height: auto;
+  width: 400px;
+}
+#closeModal {
+  text-align: right;
+  color: red;
+  font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+
+  #eventsContainer,
+  #planningContainer {
+    height: auto;
+  }
+  #eventCard,
+  .eventCardClone {
+    min-width: 200px;
+    height: auto;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  #modal {
+    width: 250px;
+    height: auto;
+  }
 }
