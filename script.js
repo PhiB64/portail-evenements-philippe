@@ -35,6 +35,10 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
       let detailsButton = document.createElement("button");
       detailsButton.className = "detailsButton";
       detailsButton.textContent = "Voir détails";
+      detailsButton.setAttribute(
+        "aria-label",
+        "Afficher les détails de l'événement " + event.title
+      );
       detailsButton.addEventListener("click", function () {
         displayModal(event);
       });
@@ -62,7 +66,7 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
 
 function addToPlanning(eventId) {
   let plannedEvents = localStorage.getItem("plannedEvents");
-
+  console.log(localStorage.getItem("plannedEvents"));
   if (plannedEvents !== null) {
     plannedEvents = JSON.parse(plannedEvents);
   } else {
@@ -132,6 +136,10 @@ function displayPlanning() {
           let detailsButton = document.createElement("button");
           detailsButton.className = "detailsButton";
           detailsButton.textContent = "Voir détails";
+          detailsButton.setAttribute(
+            "aria-label",
+            "Afficher les détails de l'événement " + event.title
+          );
           detailsButton.addEventListener("click", function () {
             displayModal(event);
           });
@@ -188,13 +196,24 @@ function displayModal(event) {
   let dateParts = event.start_date.split(" ")[0].split("-");
   document.getElementById("modalDate").textContent =
     "Date: " + dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
-  document.getElementById("modalAdress").textContent =
-    "Lieu: " + event.venue.slug;
+  let eventAdress = document.getElementById("modalAdress");
+  if (event.venue.slug !== undefined && event.venue.slug !== null) {
+    eventAdress.textContent = "Lieu: " + event.venue.slug;
+  } else {
+    eventAdress.textContent = "Lieu: non communiqué";
+  }
+  eventAdress.textContent = "Lieu: non communiqué";
   document.getElementById("modalDescription").innerHTML =
     event.description || "Pas de description disponible.";
   document.getElementById("modal").style.display = "block";
-
-  document.getElementById("closeModal").addEventListener("click", function () {
+  let modalLink = document.getElementById("modalUrl");
+  modalLink.href = event.url;
+  modalLink.textContent = event.url;
+  modalLink.setAttribute("aria-label", "Lien vers l'événement " + event.title);
+  document.getElementById("modal").style.display = "block";
+  let closeModal = document.getElementById("closeModal");
+  closeModal.setAttribute("aria-label", "Fermer la fenêtre modale");
+  closeModal.addEventListener("click", function () {
     document.getElementById("modal").style.display = "none";
   });
 }
