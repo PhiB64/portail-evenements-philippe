@@ -14,7 +14,7 @@ fetch("https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events")
       eventCard.className = "eventCard";
       eventCard.setAttribute("data-event-id", event.id);
 
-      let eventTitle = document.createElement("h3");
+      let eventTitle = document.createElement("h2");
       eventTitle.className = "eventTitle";
       eventTitle.innerHTML = event.title;
 
@@ -115,7 +115,7 @@ function displayPlanning() {
           let eventCard = document.createElement("div");
           eventCard.className = "eventCardClone";
 
-          let eventTitle = document.createElement("h3");
+          let eventTitle = document.createElement("h2");
           eventTitle.className = "eventTitle";
           eventTitle.innerHTML = event.title;
 

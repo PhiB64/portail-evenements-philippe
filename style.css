@@ -53,7 +53,7 @@ h1 {
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.624);
 }
-h2 {
+h3 {
   padding-top: 40px;
   font-weight: bold;
   font-size: 24px;
@@ -62,13 +62,14 @@ h2 {
 }
 
 p {
-  font-size: 15px;
-  font-weight: lighter;
+  font-size: 18px;
 }
+
 .eventCard p,
 .eventCardClone p {
   height: 20px;
   padding-bottom: 20px;
+  font-weight: lighter;
 }
 .eventDate {
   font-size: 18px;
@@ -146,7 +147,7 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   min-height: 300px;
   height: auto;
-  width: 400px;
+  width: 450px;
   border-radius: 5%;
 }
 #modalUrl {
@@ -225,7 +226,7 @@ button:hover {
   background-color: #333;
 }
 .dark-mode h1,
-.dark-mode h2,
+.dark-mode h3,
 .dark-mode p {
   color: white;
 }
